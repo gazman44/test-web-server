@@ -1,6 +1,15 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+
+
+// the following was added to accept the environment variable .port
+// to run on the Horoku server but if the variable is not found
+// default the const port to 3000
+const port = process.env.PORT || 3000;
+//
+//
+
 var app = express();
 hbs.registerPartials(__dirname + '/views/partials')
 app.set('view engine','hbs');
@@ -67,6 +76,6 @@ app.get('/bad',(req,res) => {
 });
 
 
-app.listen(3000, () =>{
-  console.log ('Server is up onPort 3000');
+app.listen(port, () =>{
+  console.log (`Server is up onPort ${port}`);
 });
